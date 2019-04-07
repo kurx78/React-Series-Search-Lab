@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
 import Intro from '../components/Intro';
-import ''
+import 'fetch'
 
 class App extends Component {
   state = 
   {
-    series : []
+    series : [] 
   }
   componentDidMount()
   {
-    const series = ["Big Bang Theory","Game of Thrones"];
-    setTimeout(()=>{this.setState({series:series})},2000)
+    fetch("http://api.tvmaze.com/search/shows?q=thrones").then(res => res.json())
+    .then(json => this.setState({series: json}));
   }
   render() {
     return (
