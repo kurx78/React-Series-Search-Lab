@@ -1,6 +1,6 @@
 import React from "react";
 import Table from "react-bootstrap/Table";
-
+import {Link} from "react-router-dom"
 const SeriesList = props => {
   return (
     <Table striped bordered hover>
@@ -15,6 +15,7 @@ const SeriesList = props => {
       </thead>
       <tbody>
         {props.seriesList.map((element, ElementIndex) => {
+          const elementLink = `series/${ElementIndex}`;
           return (
             <tr key={ElementIndex}>
               <td>{element.show.name}</td>
@@ -22,6 +23,7 @@ const SeriesList = props => {
               <td>{element.show.premiered}</td>
               <td>{element.show.language}</td>
               <td dangerouslySetInnerHTML={{ __html: element.show.summary }} />
+              <td><Link to={elementLink} movie={element}>Open</Link>></td>
             </tr>
           );
         })}
